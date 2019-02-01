@@ -22,7 +22,7 @@
     </div>
 
     <div class="container">
-        <div id="time"></div>
+        <div class="time" id="time">Loading...</div>
     </div>
 </body>
 
@@ -53,31 +53,26 @@
         }
     }
 
-    a svg {
-        transition: 200ms;
-        transition-timing-function: ease-in-out;
-        -webkit-transition: 200ms;
-        -webkit-transition-timing-function: ease-in-out;
+    .time {
+        transition: all 1s;
     }
 
-    a svg:hover {
-        fill: #999;
-    }
-
-    svg {
-        fill: #454545;
-        width: 1em;
-        height: 1em;
+    .time.pre-animation {
+        opacity:0;
     }
 </style>
 
 <script>
-    axios.get('https://slio.herokuapp.com/')
-      .then(function (response) {
-        let dataI = response.data[0][0]
-        document.getElementById('time').innerHTML = `${dataI}`
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    document.addEventListener("DOMContentLoaded", function(event) {
+        let container = document.querySelector('.time')
+
+        axios.get('https://slio.herokuapp.com/')
+        .then(function (response) {
+            let dataI = response.data[0][0]
+            document.getElementById('time').innerHTML = `${dataI}`
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+    })
 </script>
