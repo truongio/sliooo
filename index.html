@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SLio</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+
+    <script src="js/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="row">
+    </div>
+
+    <div class="container">
+        <div id="time"></div>
+    </div>
+</body>
+
+</html>
+
+<style>
+    body {
+        color: #454545;
+        background-color: #fafafa;
+        font-family: 'Raleway', sans-serif;
+    }
+
+    @media (min-width: 600px) {
+        .container {
+            max-width: 800px;
+            padding-top: 28%;
+            padding-left: 5%;
+        }
+    }
+
+    @media (max-width: 599px) {
+        .container {
+            position: fixed;
+            width: 100%;
+            bottom: 40%;
+            right: 25%;
+            text-align: right;
+        }
+    }
+
+    a svg {
+        transition: 200ms;
+        transition-timing-function: ease-in-out;
+        -webkit-transition: 200ms;
+        -webkit-transition-timing-function: ease-in-out;
+    }
+
+    a svg:hover {
+        fill: #999;
+    }
+
+    svg {
+        fill: #454545;
+        width: 1em;
+        height: 1em;
+    }
+</style>
+
+<script>
+    axios.get('https://slio.herokuapp.com/')
+      .then(function (response) {
+        let dataI = response.data[0][0]
+        document.getElementById('time').innerHTML = `${dataI}`
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+</script>
