@@ -23,6 +23,7 @@
 
     <div class="container">
         <div class="time" id="time">Loading...</div>
+        <div class="time-home" id="time-home">Loading...</div>
     </div>
 </body>
 
@@ -70,6 +71,8 @@
         .then(function (response) {
             let dataI = response.data[0][0]
             document.getElementById('time').innerHTML = `${dataI}`
+            let dataI2 = response.data[1][0]
+            document.getElementById('time-home').innerHTML = `${dataI2}`
         })
         .catch(function (error) {
             console.log(error);
